@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy &amp; Terms — Timepiece Scout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F4;
+    --cream-dark: #F2EFE7;
+    --cream-mid: #EAE6DA;
+    --gold: #B8986A;
+    --gold-dark: #8C7145;
+    --charcoal: #2A2825;
+    --charcoal-mid: #4A4740;
+    --warm-gray: #8C8880;
+    --border: #DDD9CF;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); font-weight: 300; }
+
+  nav { position: fixed; top: 0; width: 100%; background: rgba(250,248,244,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 5%; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1200px; margin: 0 auto; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 9px 22px; border-radius: 2px; }
+  .nav-cta:hover { background: var(--gold-dark) !important; }
+
+  .page-header { padding: 140px 5% 64px; background: var(--charcoal); text-align: center; }
+  .page-tag { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; color: var(--cream); margin-bottom: 16px; }
+  .page-sub { font-size: 13px; color: rgba(250,248,244,0.4); line-height: 1.8; }
+
+  /* TAB NAV */
+  .tab-nav { display: flex; border-bottom: 1px solid var(--border); background: var(--cream-dark); padding: 0 5%; }
+  .tab-nav-inner { max-width: 800px; margin: 0 auto; display: flex; width: 100%; }
+  .tab-btn { padding: 18px 32px 16px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: color 0.2s, border-color 0.2s; margin-bottom: -1px; }
+  .tab-btn.active { color: var(--charcoal); border-bottom-color: var(--gold); }
+  .tab-btn:hover { color: var(--charcoal-mid); }
+
+  /* CONTENT */
+  .legal-content { padding: 64px 5% 100px; }
+  .legal-inner { max-width: 800px; margin: 0 auto; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .legal-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; margin-bottom: 12px; margin-top: 44px; color: var(--charcoal); }
+  .legal-inner h2:first-child { margin-top: 0; }
+  .legal-inner h3 { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; color: var(--charcoal-mid); margin-top: 32px; margin-bottom: 10px; }
+  .legal-inner p { font-size: 14px; line-height: 1.9; color: var(--warm-gray); margin-bottom: 18px; }
+  .legal-inner ul { margin: 0 0 18px 20px; }
+  .legal-inner ul li { font-size: 14px; line-height: 1.9; color: var(--warm-gray); margin-bottom: 6px; }
+  .divider { width: 48px; height: 1px; background: var(--gold); margin: 12px 0 32px; }
+  .updated { font-size: 11px; letter-spacing: 0.1em; color: var(--warm-gray); margin-bottom: 40px; }
+
+  footer { padding: 48px 5%; border-top: 1px solid var(--border); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--warm-gray); letter-spacing: 0.08em; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+    .tab-btn { padding: 16px 18px 14px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="timepiece-scout.html" class="logo">Timepiece <span>Scout</span></a>
+    <ul>
+      <li><a href="timepiece-scout.html#how-it-works">How it works</a></li>
+      <li><a href="timepiece-scout.html#report">The report</a></li>
+      <li><a href="blog.html">Journal</a></li>
+      <li><a href="timepiece-scout.html#begin" class="nav-cta">Begin</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-tag">Legal</div>
+  <h1 class="page-title">Privacy &amp; Terms</h1>
+  <p class="page-sub">Last updated May 2026</p>
+</div>
+
+<div class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" onclick="showTab('privacy', this)">Privacy Policy</button>
+    <button class="tab-btn" onclick="showTab('terms', this)">Terms of Service</button>
+  </div>
+</div>
+
+<div class="legal-content">
+  <div class="legal-inner">
+
+    <!-- PRIVACY -->
+    <div class="tab-panel active" id="privacy">
+      <h2>Privacy Policy</h2>
+      <div class="divider"></div>
+      <p class="updated">Effective date: 1 May 2026</p>
+
+      <p>Timepiece Scout is committed to protecting your personal information. This policy explains what data we collect, why we collect it, and how we handle it.</p>
+
+      <h3>What we collect</h3>
+      <p>When you submit a report request, we collect your name, email address, and the preferences you share in the questionnaire. If you subscribe to our newsletter, we collect your email address only. We do not collect payment information directly; any payments are processed via secure third-party providers.</p>
+
+      <h3>How we use your information</h3>
+      <p>We use your information solely to produce your personal watch recommendation report and to communicate with you about it. We will not use your details for unrelated marketing without your explicit consent. If you subscribe to our newsletter, you will receive occasional horological writing and may unsubscribe at any time.</p>
+
+      <h3>Data sharing</h3>
+      <p>We do not sell, rent, or share your personal data with third parties for marketing purposes. We may use trusted service providers (such as email delivery platforms) to help operate our service; these providers are bound by confidentiality obligations and may not use your data for their own purposes.</p>
+
+      <h3>Data retention</h3>
+      <p>We retain your report request data for up to 12 months, after which it is securely deleted. You may request deletion of your data at any time by contacting us at the address below.</p>
+
+      <h3>Your rights</h3>
+      <p>Under UK GDPR, you have the right to access, correct, or delete the personal data we hold about you. You also have the right to object to processing and to data portability. To exercise any of these rights, please contact us at <a href="mailto:hello@timepiecescout.co.uk" style="color: var(--gold-dark);">hello@timepiecescout.co.uk</a>.</p>
+
+      <h3>Cookies</h3>
+      <p>Our website uses only essential cookies necessary for it to function. We do not use advertising or tracking cookies. No personal data is collected through cookies.</p>
+
+      <h3>Contact</h3>
+      <p>For any privacy-related queries, please contact us at <a href="mailto:hello@timepiecescout.co.uk" style="color: var(--gold-dark);">hello@timepiecescout.co.uk</a>. We aim to respond within five working days.</p>
+    </div>
+
+    <!-- TERMS -->
+    <div class="tab-panel" id="terms">
+      <h2>Terms of Service</h2>
+      <div class="divider"></div>
+      <p class="updated">Effective date: 1 May 2026</p>
+
+      <p>By using the Timepiece Scout website and submitting a report request, you agree to the following terms. Please read them carefully.</p>
+
+      <h3>The service</h3>
+      <p>Timepiece Scout provides personalised watch recommendation reports based on information supplied by the customer. Reports are prepared by our team and delivered by email within 48 hours of a completed submission. We reserve the right to request clarification before commencing a report if the information provided is insufficient.</p>
+
+      <h3>Pricing and the introductory offer</h3>
+      <p>The standard price for a Timepiece Scout report is £50. As an introductory offer, the first ten customers to submit a report request will receive their report free of charge. This offer applies to the first ten verified submissions only and may be withdrawn at any time without notice once that threshold is reached.</p>
+
+      <h3>Nature of recommendations</h3>
+      <p>Our recommendations are opinions based on the information you provide and our editorial knowledge of the watch market. They do not constitute financial advice. Watch values fluctuate and past performance of any timepiece on the secondary market is not a guarantee of future value. Timepiece Scout accepts no liability for purchasing decisions made in reliance on our reports.</p>
+
+      <h3>No affiliation</h3>
+      <p>Timepiece Scout is an independent service. We have no commercial relationships with any watch brands, retailers, or marketplaces mentioned in our reports. Our recommendations are made solely on the basis of our editorial judgement.</p>
+
+      <h3>Intellectual property</h3>
+      <p>Reports produced by Timepiece Scout are for the personal use of the named recipient only. They may not be reproduced, redistributed, or published without our prior written consent.</p>
+
+      <h3>Limitation of liability</h3>
+      <p>To the fullest extent permitted by law, Timepiece Scout shall not be liable for any indirect, incidental, or consequential damages arising from your use of our service or reliance on the content of a report.</p>
+
+      <h3>Governing law</h3>
+      <p>These terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+      <h3>Changes to these terms</h3>
+      <p>We may update these terms from time to time. The date at the top of this page reflects the most recent revision. Continued use of our service after any update constitutes acceptance of the revised terms.</p>
+
+      <h3>Contact</h3>
+      <p>For questions about these terms, please contact us at <a href="mailto:hello@timepiecescout.co.uk" style="color: var(--gold-dark);">hello@timepiecescout.co.uk</a>.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 Timepiece Scout. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="legal.html">Privacy &amp; Terms</a>
+      <a href="blog.html">Journal</a>
+      <a href="mailto:hello@timepiecescout.co.uk">Contact</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

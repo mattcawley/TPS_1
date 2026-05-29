@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Journal — Timepiece Scout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F4;
+    --cream-dark: #F2EFE7;
+    --cream-mid: #EAE6DA;
+    --gold: #B8986A;
+    --gold-dark: #8C7145;
+    --charcoal: #2A2825;
+    --charcoal-mid: #4A4740;
+    --warm-gray: #8C8880;
+    --border: #DDD9CF;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); font-weight: 300; }
+
+  nav { position: fixed; top: 0; width: 100%; background: rgba(250,248,244,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 5%; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1200px; margin: 0 auto; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 9px 22px; border-radius: 2px; }
+  .nav-cta:hover { background: var(--gold-dark) !important; }
+
+  /* PAGE HEADER */
+  .page-header { padding: 140px 5% 80px; background: var(--charcoal); text-align: center; }
+  .page-tag { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 64px); font-weight: 300; color: var(--cream); margin-bottom: 20px; }
+  .page-title em { font-style: italic; color: var(--gold); }
+  .page-sub { font-size: 15px; color: rgba(250,248,244,0.5); line-height: 1.8; max-width: 500px; margin: 0 auto; }
+
+  /* FEATURED POST */
+  .featured { padding: 80px 5% 0; }
+  .featured-inner { max-width: 1200px; margin: 0 auto; }
+  .featured-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+  .featured-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .featured-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; background: #fff; }
+  .featured-image { background: var(--charcoal); min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .featured-image-inner { text-align: center; }
+  .feat-watch { width: 180px; height: 180px; border-radius: 50%; border: 2px solid var(--gold); background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+  .feat-watch-inner { width: 130px; height: 130px; border-radius: 50%; border: 1px solid rgba(184,152,106,0.3); background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; }
+  .feat-watch-text { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: rgba(250,248,244,0.4); letter-spacing: 0.1em; text-align: center; line-height: 1.5; }
+  .feat-cat { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+  .featured-content { padding: 52px 48px; display: flex; flex-direction: column; justify-content: center; }
+  .post-category { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .post-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; line-height: 1.2; margin-bottom: 18px; color: var(--charcoal); }
+  .post-excerpt { font-size: 14px; line-height: 1.9; color: var(--warm-gray); margin-bottom: 28px; }
+  .post-meta { font-size: 11px; letter-spacing: 0.1em; color: var(--warm-gray); margin-bottom: 28px; }
+  .post-meta span { color: var(--charcoal-mid); }
+  .read-more { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--charcoal); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--charcoal); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+  .read-more:hover { color: var(--gold); border-color: var(--gold); }
+  .read-more::after { content: '→'; }
+
+  /* GRID POSTS */
+  .posts-section { padding: 60px 5% 100px; }
+  .posts-inner { max-width: 1200px; margin: 0 auto; }
+  .posts-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+  .posts-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .post-card { border: 1px solid var(--border); border-radius: 2px; overflow: hidden; background: #fff; transition: box-shadow 0.2s; cursor: pointer; }
+  .post-card:hover { box-shadow: 0 8px 32px rgba(42,40,37,0.08); }
+  .post-card-image { height: 200px; background: var(--charcoal); display: flex; align-items: center; justify-content: center; position: relative; }
+  .post-card-image.alt1 { background: #2A2825; }
+  .post-card-image.alt2 { background: #3A3530; }
+  .post-card-image.alt3 { background: #1E1C1A; }
+  .post-card-image.alt4 { background: #322E2A; }
+  .post-card-image.alt5 { background: #262320; }
+  .mini-watch { width: 90px; height: 90px; border-radius: 50%; border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; }
+  .mini-watch-inner { width: 64px; height: 64px; border-radius: 50%; border: 1px solid rgba(184,152,106,0.3); background: rgba(255,255,255,0.04); }
+  .post-card-body { padding: 28px; }
+  .post-card-body .post-category { margin-bottom: 10px; }
+  .post-card-body .post-title { font-size: 20px; margin-bottom: 12px; }
+  .post-card-body .post-excerpt { font-size: 13px; margin-bottom: 18px; }
+  .post-card-body .post-meta { margin-bottom: 0; }
+
+  /* NEWSLETTER */
+  .newsletter { padding: 80px 5%; background: var(--cream-dark); border-top: 1px solid var(--border); }
+  .newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+  .newsletter-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .newsletter-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; margin-bottom: 16px; }
+  .newsletter-sub { font-size: 14px; color: var(--warm-gray); line-height: 1.8; margin-bottom: 32px; }
+  .newsletter-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; }
+  .newsletter-form input { flex: 1; padding: 13px 20px; border: 1px solid var(--border); border-right: none; border-radius: 2px 0 0 2px; font-family: 'Jost', sans-serif; font-size: 14px; background: #fff; color: var(--charcoal); outline: none; }
+  .newsletter-form input:focus { border-color: var(--gold); }
+  .newsletter-form button { background: var(--charcoal); color: var(--cream); padding: 13px 24px; border: none; border-radius: 0 2px 2px 0; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+  .newsletter-form button:hover { background: var(--gold-dark); }
+
+  /* FOOTER */
+  footer { padding: 48px 5%; border-top: 1px solid var(--border); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--warm-gray); letter-spacing: 0.08em; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 768px) {
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-image { min-height: 240px; }
+    .posts-grid { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input { border-right: 1px solid var(--border); border-bottom: none; border-radius: 2px 2px 0 0; }
+    .newsletter-form button { border-radius: 0 0 2px 2px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="timepiece-scout.html" class="logo">Timepiece <span>Scout</span></a>
+    <ul>
+      <li><a href="timepiece-scout.html#how-it-works">How it works</a></li>
+      <li><a href="timepiece-scout.html#report">The report</a></li>
+      <li><a href="blog.html">Journal</a></li>
+      <li><a href="timepiece-scout.html#begin" class="nav-cta">Begin</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-tag">Horological writing</div>
+  <h1 class="page-title">The <em>Journal</em></h1>
+  <p class="page-sub">Insight, opinion, and guidance for the considered watch buyer. Written by people who genuinely love watches.</p>
+</div>
+
+<section class="featured">
+  <div class="featured-inner">
+    <div class="featured-label">Featured</div>
+    <div class="featured-card">
+      <div class="featured-image">
+        <div class="featured-image-inner">
+          <div class="feat-watch">
+            <div class="feat-watch-inner">
+              <div class="feat-watch-text">PATEK<br>PHILIPPE</div>
+            </div>
+          </div>
+          <div class="feat-cat">Buying guide</div>
+        </div>
+      </div>
+      <div class="featured-content">
+        <div class="post-category">Buying guide</div>
+        <h2 class="post-title">The first serious watch: why getting it right matters more than you think</h2>
+        <p class="post-excerpt">The watch you buy first sets the template for everything that comes after. It shapes your eye, calibrates your taste, and often determines whether collecting becomes a lifelong pleasure or an expensive series of regrets. We walk through the decisions that matter most for the uninitiated buyer with a considered budget.</p>
+        <div class="post-meta">By the Timepiece Scout team &nbsp;·&nbsp; <span>12 May 2026</span> &nbsp;·&nbsp; 8 min read</div>
+        <a href="#" class="read-more">Read the article</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="posts-section">
+  <div class="posts-inner">
+    <div class="posts-label">Latest articles</div>
+    <div class="posts-grid">
+
+      <div class="post-card">
+        <div class="post-card-image alt1">
+          <div class="mini-watch"><div class="mini-watch-inner"></div></div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-category">Brand profiles</div>
+          <h3 class="post-title">Why Tudor deserves to be taken seriously on its own terms</h3>
+          <p class="post-excerpt">For years, Tudor lived in Rolex's shadow. That era is over. We examine what makes the modern Tudor offering genuinely compelling.</p>
+          <div class="post-meta"><span>5 May 2026</span> &nbsp;·&nbsp; 6 min read</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-image alt2">
+          <div class="mini-watch"><div class="mini-watch-inner"></div></div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-category">Complications explained</div>
+          <h3 class="post-title">The moonphase: romantic complication or horological irrelevance?</h3>
+          <p class="post-excerpt">It serves no practical purpose in the age of the smartphone. And yet the moonphase remains one of the most beautiful things a dial can display.</p>
+          <div class="post-meta"><span>28 Apr 2026</span> &nbsp;·&nbsp; 5 min read</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-image alt3">
+          <div class="mini-watch"><div class="mini-watch-inner"></div></div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-category">Value</div>
+          <h3 class="post-title">The best watches under £2,000 in 2026: a curated shortlist</h3>
+          <p class="post-excerpt">The entry level has never been stronger. From Grand Seiko to Longines, we pick the references that punch hardest below two thousand pounds.</p>
+          <div class="post-meta"><span>19 Apr 2026</span> &nbsp;·&nbsp; 7 min read</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-image alt4">
+          <div class="mini-watch"><div class="mini-watch-inner"></div></div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-category">Craft</div>
+          <h3 class="post-title">What actually happens inside an automatic movement</h3>
+          <p class="post-excerpt">The rotor, the mainspring, the escapement. We explain the mechanics of a self-winding watch in plain English, no engineering degree required.</p>
+          <div class="post-meta"><span>10 Apr 2026</span> &nbsp;·&nbsp; 9 min read</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-image alt5">
+          <div class="mini-watch"><div class="mini-watch-inner"></div></div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-category">Advice</div>
+          <h3 class="post-title">Leather, bracelet, or rubber: choosing the right strap for your watch</h3>
+          <p class="post-excerpt">The strap can transform a watch entirely. We walk through the materials, the occasions, and the practical questions worth considering before you decide.</p>
+          <div class="post-meta"><span>2 Apr 2026</span> &nbsp;·&nbsp; 4 min read</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-image alt2">
+          <div class="mini-watch"><div class="mini-watch-inner"></div></div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-category">Market</div>
+          <h3 class="post-title">Pre-owned vs new: the honest case for both sides of the argument</h3>
+          <p class="post-excerpt">Buying pre-owned can save you thousands and unlock references no longer in production. But it comes with real risks. Here is how to think through the decision.</p>
+          <div class="post-meta"><span>24 Mar 2026</span> &nbsp;·&nbsp; 6 min read</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-tag">Stay informed</div>
+    <h2 class="newsletter-title">The Scout's Dispatch</h2>
+    <p class="newsletter-sub">Occasional writing on watches worth knowing about, sent directly to your inbox. No noise, no affiliate links.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="your@email.com">
+      <button onclick="alert('Thank you for subscribing to The Scout\'s Dispatch.')">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 Timepiece Scout. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="legal.html">Privacy &amp; Terms</a>
+      <a href="blog.html">Journal</a>
+      <a href="mailto:hello@timepiecescout.co.uk">Contact</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
