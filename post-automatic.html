@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What actually happens inside an automatic movement — Timepiece Scout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F4; --cream-dark: #F2EFE7; --cream-mid: #EAE6DA;
+    --gold: #B8986A; --gold-dark: #8C7145; --charcoal: #2A2825;
+    --charcoal-mid: #4A4740; --warm-gray: #8C8880; --border: #DDD9CF;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); font-weight: 300; }
+  nav { position: fixed; top: 0; width: 100%; background: rgba(250,248,244,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 5%; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1200px; margin: 0 auto; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 9px 22px; border-radius: 2px; }
+  .nav-cta:hover { background: var(--gold-dark) !important; }
+  .post-hero { padding: 130px 5% 72px; background: var(--charcoal); }
+  .post-hero-inner { max-width: 760px; margin: 0 auto; }
+  .back-link { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,248,244,0.4); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 40px; transition: color 0.2s; }
+  .back-link::before { content: '←'; }
+  .back-link:hover { color: var(--gold); }
+  .post-category { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .post-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4.5vw, 54px); font-weight: 300; line-height: 1.15; color: var(--cream); margin-bottom: 24px; }
+  .post-hero h1 em { font-style: italic; color: var(--gold); }
+  .post-meta { font-size: 12px; color: rgba(250,248,244,0.4); letter-spacing: 0.08em; }
+  .post-meta span { color: rgba(250,248,244,0.65); }
+  .post-body { padding: 72px 5% 100px; }
+  .post-body-inner { max-width: 700px; margin: 0 auto; }
+  .post-body p { font-size: 16px; line-height: 1.9; color: var(--charcoal-mid); margin-bottom: 28px; }
+  .post-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--charcoal); margin: 52px 0 18px; }
+  .post-body h3 { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; color: var(--charcoal); margin: 36px 0 12px; }
+  .post-body blockquote { border-left: 3px solid var(--gold); padding: 4px 0 4px 28px; margin: 36px 0; }
+  .post-body blockquote p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 300; color: var(--charcoal-mid); margin: 0; }
+  .post-divider { width: 48px; height: 1px; background: var(--gold); margin: 52px 0; }
+  .cta-box { background: var(--charcoal); padding: 44px 48px; border-radius: 2px; text-align: center; margin: 60px 0 0; }
+  .cta-box p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: rgba(250,248,244,0.7); margin-bottom: 24px; font-weight: 300; line-height: 1.5; }
+  .cta-box a { display: inline-block; background: var(--gold); color: var(--cream); padding: 14px 36px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+  .cta-box a:hover { background: var(--gold-dark); }
+  footer { padding: 48px 5%; border-top: 1px solid var(--border); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--warm-gray); letter-spacing: 0.08em; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  @media (max-width: 768px) { nav ul { display: none; } .footer-inner { flex-direction: column; gap: 20px; text-align: center; } .cta-box { padding: 36px 24px; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Timepiece <span>Scout</span></a>
+    <ul>
+      <li><a href="index.html#how-it-works">How it works</a></li>
+      <li><a href="index.html#report">The report</a></li>
+      <li><a href="blog.html">Journal</a></li>
+      <li><a href="index.html#begin" class="nav-cta">Begin</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="post-hero">
+  <div class="post-hero-inner">
+    <a href="blog.html" class="back-link">Back to the Journal</a>
+    <div class="post-category">Craft</div>
+    <h1>What actually happens inside an automatic movement</h1>
+    <div class="post-meta">By the Timepiece Scout team &nbsp;&middot;&nbsp; <span>10 Apr 2026</span> &nbsp;&middot;&nbsp; 9 min read</div>
+  </div>
+</div>
+<div class="post-body">
+  <div class="post-body-inner">
+
+    <p>You have heard the terms. Automatic, mechanical, self-winding, calibre. You may have seen a watch with an exhibition caseback and watched the rotor spin without being entirely sure what you were looking at. This guide explains what is actually happening inside a mechanical watch in plain English, starting from the beginning.</p>
+
+    <h2>The mainspring: stored energy</h2>
+    <p>Everything begins with the mainspring: a long, thin strip of metal, typically around 30cm to 40cm when fully uncoiled, wound tightly inside a cylindrical barrel. When you wind a watch, or when the rotor winds it for you, you are tightening this spring. As it uncoils, it releases energy in a controlled way through the gear train.</p>
+    <p>The barrel is designed to release energy at a consistent rate even as the spring tension diminishes. This is important: a mainspring under full tension releases more energy than one nearly unwound, and without careful engineering, this would cause the watch to run fast when wound and slow when nearly run down. A good mainspring and barrel design minimises this variation.</p>
+
+    <h2>The gear train: transmitting energy</h2>
+    <p>From the barrel, energy passes through a series of gears, each rotating faster than the last. The gear train reduces the force of the mainspring to the tiny increments required to move the hands. By the time energy reaches the escapement, it has been divided into precise, tiny pulses.</p>
+
+    <h2>The escapement: controlling time</h2>
+    <p>The escapement is the heart of the watch. It is the mechanism that converts the continuous rotational energy of the gear train into the tick-tock oscillation that you hear when you hold a mechanical watch to your ear. It consists of the escape wheel and the pallet fork.</p>
+    <p>The pallet fork alternately locks and releases the escape wheel, allowing it to advance by one tooth at a time. Each advance gives a tiny push to the balance wheel. The balance wheel oscillates back and forth at a fixed frequency, governed by the hairspring coiled around it. This oscillation is the heartbeat of the watch.</p>
+
+    <blockquote><p>The balance wheel is the heartbeat of the watch. Everything else serves to keep it beating consistently.</p></blockquote>
+
+    <h2>The balance wheel and hairspring: keeping time</h2>
+    <p>The balance wheel is a weighted wheel that oscillates at a fixed frequency. In most modern movements, this is either 28,800 beats per hour (8 beats per second) or 21,600 beats per hour (6 beats per second). Higher frequencies generally provide more accuracy but wear components faster.</p>
+    <p>The hairspring, a coil of extremely fine metal attached to the balance wheel staff, provides the restoring force that brings the wheel back to its starting position after each oscillation. The rate of the watch is adjusted by changing the effective length of the hairspring. A longer hairspring oscillates more slowly; a shorter one more quickly.</p>
+
+    <h2>The rotor: automatic winding</h2>
+    <p>In an automatic movement, a semicircular weight called the rotor is mounted on the back of the movement and rotates freely around the central axis. As your wrist moves during the day, the rotor spins under gravity, and this rotation is converted via a series of gears and a clutch mechanism into winding tension on the mainspring.</p>
+    <p>The clutch is essential: it ensures the rotor can only wind the spring in one direction regardless of which way it spins, and it disengages when the spring is fully wound to prevent overwinding. A watch worn regularly on an active wrist will typically maintain full wind throughout the day.</p>
+
+    <h2>Why does any of this matter?</h2>
+    <p>Understanding a movement does not change how a watch looks on your wrist. But it changes how you relate to it. When you feel the weight of the rotor through the case, or see the pallet fork flickering through an exhibition caseback, you are watching engineering that has been refined over three hundred years. That is worth understanding.</p>
+
+    <div class="post-divider"></div>
+    <p>If you are ready to own a mechanical watch and would like help choosing the right one, Timepiece Scout will give you three considered recommendations built around your brief.</p>
+  
+    <div class="cta-box">
+      <p>Ready to find the watch that was made for you?</p>
+      <a href="index.html#begin">Get my personal report</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 Timepiece Scout. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="legal.html">Privacy &amp; Terms</a>
+      <a href="blog.html">Journal</a>
+      <a href="mailto:hello@timepiecescout.com">Contact</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

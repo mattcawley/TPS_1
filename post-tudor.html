@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Tudor deserves to be taken seriously on its own terms — Timepiece Scout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F4; --cream-dark: #F2EFE7; --cream-mid: #EAE6DA;
+    --gold: #B8986A; --gold-dark: #8C7145; --charcoal: #2A2825;
+    --charcoal-mid: #4A4740; --warm-gray: #8C8880; --border: #DDD9CF;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); font-weight: 300; }
+  nav { position: fixed; top: 0; width: 100%; background: rgba(250,248,244,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 5%; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1200px; margin: 0 auto; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 9px 22px; border-radius: 2px; }
+  .nav-cta:hover { background: var(--gold-dark) !important; }
+  .post-hero { padding: 130px 5% 72px; background: var(--charcoal); }
+  .post-hero-inner { max-width: 760px; margin: 0 auto; }
+  .back-link { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,248,244,0.4); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 40px; transition: color 0.2s; }
+  .back-link::before { content: '←'; }
+  .back-link:hover { color: var(--gold); }
+  .post-category { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .post-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4.5vw, 54px); font-weight: 300; line-height: 1.15; color: var(--cream); margin-bottom: 24px; }
+  .post-hero h1 em { font-style: italic; color: var(--gold); }
+  .post-meta { font-size: 12px; color: rgba(250,248,244,0.4); letter-spacing: 0.08em; }
+  .post-meta span { color: rgba(250,248,244,0.65); }
+  .post-body { padding: 72px 5% 100px; }
+  .post-body-inner { max-width: 700px; margin: 0 auto; }
+  .post-body p { font-size: 16px; line-height: 1.9; color: var(--charcoal-mid); margin-bottom: 28px; }
+  .post-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--charcoal); margin: 52px 0 18px; }
+  .post-body h3 { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; color: var(--charcoal); margin: 36px 0 12px; }
+  .post-body blockquote { border-left: 3px solid var(--gold); padding: 4px 0 4px 28px; margin: 36px 0; }
+  .post-body blockquote p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 300; color: var(--charcoal-mid); margin: 0; }
+  .post-divider { width: 48px; height: 1px; background: var(--gold); margin: 52px 0; }
+  .cta-box { background: var(--charcoal); padding: 44px 48px; border-radius: 2px; text-align: center; margin: 60px 0 0; }
+  .cta-box p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: rgba(250,248,244,0.7); margin-bottom: 24px; font-weight: 300; line-height: 1.5; }
+  .cta-box a { display: inline-block; background: var(--gold); color: var(--cream); padding: 14px 36px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+  .cta-box a:hover { background: var(--gold-dark); }
+  footer { padding: 48px 5%; border-top: 1px solid var(--border); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--warm-gray); letter-spacing: 0.08em; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  @media (max-width: 768px) { nav ul { display: none; } .footer-inner { flex-direction: column; gap: 20px; text-align: center; } .cta-box { padding: 36px 24px; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Timepiece <span>Scout</span></a>
+    <ul>
+      <li><a href="index.html#how-it-works">How it works</a></li>
+      <li><a href="index.html#report">The report</a></li>
+      <li><a href="blog.html">Journal</a></li>
+      <li><a href="index.html#begin" class="nav-cta">Begin</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="post-hero">
+  <div class="post-hero-inner">
+    <a href="blog.html" class="back-link">Back to the Journal</a>
+    <div class="post-category">Brand Profiles</div>
+    <h1>Why Tudor deserves to be taken seriously on its own terms</h1>
+    <div class="post-meta">By the Timepiece Scout team &nbsp;&middot;&nbsp; <span>5 May 2026</span> &nbsp;&middot;&nbsp; 6 min read</div>
+  </div>
+</div>
+<div class="post-body">
+  <div class="post-body-inner">
+
+    <p>For decades, Tudor existed in a strange half-light. Owned by Rolex, using Rolex cases, sold through Rolex dealers, and yet perpetually positioned as the affordable alternative for people who wanted a Rolex but could not quite afford one. That framing was always reductive. Today it is simply wrong.</p>
+    <p>Tudor has become one of the most interesting watch brands in the world. Not interesting in spite of its history, but because of what it has done with it.</p>
+
+    <h2>The in-house turning point</h2>
+    <p>The moment Tudor began to be taken seriously by collectors was the introduction of the MT5612, its first in-house manufacture movement, in 2015. Before that, Tudor used ETA and Sellita movements. Nothing wrong with either; they are the workhorses of the Swiss industry. But in-house means independence. It means Tudor controls the movement, the regulation, the finishing, and the service network.</p>
+    <p>The MT5000 family of movements that followed is genuinely excellent. They are COSC-certified chronometers, carry a 70-hour power reserve, and are finished to a standard that compares favourably with movements costing considerably more.</p>
+
+    <h2>The Black Bay family</h2>
+    <p>The watch that put Tudor back on the map is the Black Bay, first released in 2012. It was a deliberate and confident act of heritage mining, drawing on the dive watches Tudor made for the French Navy in the 1950s and 60s. The snowflake hands, the domed crystal, the gilt details: all references to a catalogue that genuine collectors had quietly admired for years.</p>
+    <p>What surprised people was that it was not nostalgia for its own sake. The Black Bay wore beautifully. It was robust enough to dive in, elegant enough for a dinner, and versatile enough to work on any strap. The 41mm version became an instant modern classic. The 36mm that followed it is, in this writer&rsquo;s opinion, one of the finest watches made at any price.</p>
+
+    <blockquote><p>The Black Bay 36 is, quietly, one of the finest watches made at any price.</p></blockquote>
+
+    <h2>The Pelagos and the professional case</h2>
+    <p>The Pelagos is the other side of the Tudor story. Where the Black Bay is heritage, the Pelagos is performance. Titanium case, helium escape valve, in-house movement, self-adjusting clasp. It is a serious dive watch that happens to cost a fraction of what a comparable Rolex Submariner would demand.</p>
+    <p>The Pelagos FXD, developed with the French Marine Nationale and worn fixed to the wrist without a clasp, is as interesting a watch as any brand has made in the past decade.</p>
+
+    <h2>What Tudor is not</h2>
+    <p>Tudor is not a poor man&rsquo;s Rolex. That framing insults both brands. Rolex makes exceptional watches with a level of quality control and finishing that justifies their premium. Tudor makes a different kind of watch: more experimental, more playful, and frankly more interesting to a collector who has already gone through the conventional progression.</p>
+    <p>If you are considering your first serious watch and Tudor is on the shortlist, put it at the top. Not because it is the cheapest option, but because it is genuinely one of the best.</p>
+
+    <div class="post-divider"></div>
+    <p>If you would like to know which specific Tudor reference is right for your wrist and your life, a Timepiece Scout report will tell you exactly that.</p>
+  
+    <div class="cta-box">
+      <p>Ready to find the watch that was made for you?</p>
+      <a href="index.html#begin">Get my personal report</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 Timepiece Scout. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="legal.html">Privacy &amp; Terms</a>
+      <a href="blog.html">Journal</a>
+      <a href="mailto:hello@timepiecescout.com">Contact</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

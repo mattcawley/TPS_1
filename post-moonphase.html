@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The moonphase: romantic complication or horological irrelevance? — Timepiece Scout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F4; --cream-dark: #F2EFE7; --cream-mid: #EAE6DA;
+    --gold: #B8986A; --gold-dark: #8C7145; --charcoal: #2A2825;
+    --charcoal-mid: #4A4740; --warm-gray: #8C8880; --border: #DDD9CF;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); font-weight: 300; }
+  nav { position: fixed; top: 0; width: 100%; background: rgba(250,248,244,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 5%; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1200px; margin: 0 auto; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 9px 22px; border-radius: 2px; }
+  .nav-cta:hover { background: var(--gold-dark) !important; }
+  .post-hero { padding: 130px 5% 72px; background: var(--charcoal); }
+  .post-hero-inner { max-width: 760px; margin: 0 auto; }
+  .back-link { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,248,244,0.4); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 40px; transition: color 0.2s; }
+  .back-link::before { content: '←'; }
+  .back-link:hover { color: var(--gold); }
+  .post-category { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .post-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4.5vw, 54px); font-weight: 300; line-height: 1.15; color: var(--cream); margin-bottom: 24px; }
+  .post-hero h1 em { font-style: italic; color: var(--gold); }
+  .post-meta { font-size: 12px; color: rgba(250,248,244,0.4); letter-spacing: 0.08em; }
+  .post-meta span { color: rgba(250,248,244,0.65); }
+  .post-body { padding: 72px 5% 100px; }
+  .post-body-inner { max-width: 700px; margin: 0 auto; }
+  .post-body p { font-size: 16px; line-height: 1.9; color: var(--charcoal-mid); margin-bottom: 28px; }
+  .post-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--charcoal); margin: 52px 0 18px; }
+  .post-body h3 { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; color: var(--charcoal); margin: 36px 0 12px; }
+  .post-body blockquote { border-left: 3px solid var(--gold); padding: 4px 0 4px 28px; margin: 36px 0; }
+  .post-body blockquote p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 300; color: var(--charcoal-mid); margin: 0; }
+  .post-divider { width: 48px; height: 1px; background: var(--gold); margin: 52px 0; }
+  .cta-box { background: var(--charcoal); padding: 44px 48px; border-radius: 2px; text-align: center; margin: 60px 0 0; }
+  .cta-box p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: rgba(250,248,244,0.7); margin-bottom: 24px; font-weight: 300; line-height: 1.5; }
+  .cta-box a { display: inline-block; background: var(--gold); color: var(--cream); padding: 14px 36px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+  .cta-box a:hover { background: var(--gold-dark); }
+  footer { padding: 48px 5%; border-top: 1px solid var(--border); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--warm-gray); letter-spacing: 0.08em; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  @media (max-width: 768px) { nav ul { display: none; } .footer-inner { flex-direction: column; gap: 20px; text-align: center; } .cta-box { padding: 36px 24px; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Timepiece <span>Scout</span></a>
+    <ul>
+      <li><a href="index.html#how-it-works">How it works</a></li>
+      <li><a href="index.html#report">The report</a></li>
+      <li><a href="blog.html">Journal</a></li>
+      <li><a href="index.html#begin" class="nav-cta">Begin</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="post-hero">
+  <div class="post-hero-inner">
+    <a href="blog.html" class="back-link">Back to the Journal</a>
+    <div class="post-category">Complications Explained</div>
+    <h1>The moonphase: romantic complication or horological irrelevance?</h1>
+    <div class="post-meta">By the Timepiece Scout team &nbsp;&middot;&nbsp; <span>28 Apr 2026</span> &nbsp;&middot;&nbsp; 5 min read</div>
+  </div>
+</div>
+<div class="post-body">
+  <div class="post-body-inner">
+
+    <p>Let us be honest about what a moonphase complication does. It tells you the approximate phase of the moon. A piece of information you could obtain by looking out of a window, checking your phone, or simply going outside. In terms of practical utility, it ranks somewhere below a tachymeter scale and well below a date window.</p>
+    <p>And yet, the moonphase remains one of the most coveted complications in watchmaking. It appears on watches costing hundreds of thousands of pounds. Collectors who have owned chronographs, perpetual calendars, and minute repeaters often single out the moonphase as their favourite complication. Why?</p>
+
+    <h2>The history: older than you think</h2>
+    <p>Moonphase displays appear in pocket watches from the seventeenth century. They were genuinely useful when agriculture and navigation depended on knowing the lunar cycle. Farmers used them to plan planting. Sailors used them to predict tides. The complication was not decorative then. It was practical.</p>
+    <p>That practical origin gave it a kind of legitimacy that never fully disappeared, even as its usefulness did. When a watchmaker adds a moonphase today, they are participating in a tradition that stretches back four hundred years. That is not irrelevant.</p>
+
+    <h2>The mechanics: more interesting than you expect</h2>
+    <p>A traditional moonphase display uses a disc with two moon apertures that advances once every 24 hours and 50 minutes, matching the lunar synodic cycle of 29 days, 12 hours, 44 minutes and 3 seconds. A well-engineered moonphase will only require correction once every two to three years. A poorly engineered one will need it monthly.</p>
+    <p>The better ones use higher tooth counts on the driving gear to achieve greater accuracy. The A. Lange &amp; S&ouml;hne Perpetual Calendar moonphase famously requires correction once every 122 years. That is not uselessness. That is a small masterpiece of engineering in service of something beautiful.</p>
+
+    <blockquote><p>A well-made moonphase is a small masterpiece of engineering in service of something beautiful.</p></blockquote>
+
+    <h2>On the wrist: what it actually feels like</h2>
+    <p>There is something that happens when you look at a moonphase display on a clear night and then look up at the sky. The match is either uncanny or slightly off, depending on how recently you set it. Either way, you feel connected to something larger than a meeting schedule.</p>
+    <p>That feeling is not nothing. Watches have always been about more than timekeeping. They are about meaning, about craft, about the human desire to measure and understand the world. A moonphase, more than almost any other complication, embodies that impulse without taking itself too seriously.</p>
+
+    <h2>Which moonphase is worth buying?</h2>
+    <p>At the entry level, the Longines Master Collection Moonphase offers a COSC-certified movement with a genuine moonphase display for around £2,000 to £2,500. It is exceptional value. Further up, the Jaeger-LeCoultre Master Ultra Thin Perpetual is the reference that serious collectors point to. At the top, the Patek Philippe 5711 with moonphase remains the gold standard against which everything else is measured.</p>
+    <p>The right answer depends on your budget and taste, which is precisely the kind of question that merits a proper recommendation.</p>
+
+    <div class="post-divider"></div>
+    <p>If a moonphase is on your shortlist and you would like help choosing the right one, a Timepiece Scout report will give you three considered options specific to your brief.</p>
+  
+    <div class="cta-box">
+      <p>Ready to find the watch that was made for you?</p>
+      <a href="index.html#begin">Get my personal report</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 Timepiece Scout. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="legal.html">Privacy &amp; Terms</a>
+      <a href="blog.html">Journal</a>
+      <a href="mailto:hello@timepiecescout.com">Contact</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

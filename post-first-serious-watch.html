@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The first serious watch: why getting it right matters more than you think — Timepiece Scout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F4; --cream-dark: #F2EFE7; --cream-mid: #EAE6DA;
+    --gold: #B8986A; --gold-dark: #8C7145; --charcoal: #2A2825;
+    --charcoal-mid: #4A4740; --warm-gray: #8C8880; --border: #DDD9CF;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); font-weight: 300; }
+  nav { position: fixed; top: 0; width: 100%; background: rgba(250,248,244,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 5%; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1200px; margin: 0 auto; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 9px 22px; border-radius: 2px; }
+  .nav-cta:hover { background: var(--gold-dark) !important; }
+  .post-hero { padding: 130px 5% 72px; background: var(--charcoal); }
+  .post-hero-inner { max-width: 760px; margin: 0 auto; }
+  .back-link { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,248,244,0.4); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 40px; transition: color 0.2s; }
+  .back-link::before { content: '←'; }
+  .back-link:hover { color: var(--gold); }
+  .post-category { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .post-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4.5vw, 54px); font-weight: 300; line-height: 1.15; color: var(--cream); margin-bottom: 24px; }
+  .post-hero h1 em { font-style: italic; color: var(--gold); }
+  .post-meta { font-size: 12px; color: rgba(250,248,244,0.4); letter-spacing: 0.08em; }
+  .post-meta span { color: rgba(250,248,244,0.65); }
+  .post-body { padding: 72px 5% 100px; }
+  .post-body-inner { max-width: 700px; margin: 0 auto; }
+  .post-body p { font-size: 16px; line-height: 1.9; color: var(--charcoal-mid); margin-bottom: 28px; }
+  .post-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--charcoal); margin: 52px 0 18px; }
+  .post-body h3 { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; color: var(--charcoal); margin: 36px 0 12px; }
+  .post-body blockquote { border-left: 3px solid var(--gold); padding: 4px 0 4px 28px; margin: 36px 0; }
+  .post-body blockquote p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 300; color: var(--charcoal-mid); margin: 0; }
+  .post-divider { width: 48px; height: 1px; background: var(--gold); margin: 52px 0; }
+  .cta-box { background: var(--charcoal); padding: 44px 48px; border-radius: 2px; text-align: center; margin: 60px 0 0; }
+  .cta-box p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: rgba(250,248,244,0.7); margin-bottom: 24px; font-weight: 300; line-height: 1.5; }
+  .cta-box a { display: inline-block; background: var(--gold); color: var(--cream); padding: 14px 36px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+  .cta-box a:hover { background: var(--gold-dark); }
+  footer { padding: 48px 5%; border-top: 1px solid var(--border); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--warm-gray); letter-spacing: 0.08em; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  @media (max-width: 768px) { nav ul { display: none; } .footer-inner { flex-direction: column; gap: 20px; text-align: center; } .cta-box { padding: 36px 24px; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Timepiece <span>Scout</span></a>
+    <ul>
+      <li><a href="index.html#how-it-works">How it works</a></li>
+      <li><a href="index.html#report">The report</a></li>
+      <li><a href="blog.html">Journal</a></li>
+      <li><a href="index.html#begin" class="nav-cta">Begin</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="post-hero">
+  <div class="post-hero-inner">
+    <a href="blog.html" class="back-link">Back to the Journal</a>
+    <div class="post-category">Buying Guide</div>
+    <h1>The first serious watch: why getting it right matters more than you think</h1>
+    <div class="post-meta">By the Timepiece Scout team &nbsp;&middot;&nbsp; <span>12 May 2026</span> &nbsp;&middot;&nbsp; 8 min read</div>
+  </div>
+</div>
+<div class="post-body">
+  <div class="post-body-inner">
+
+    <p>There is a particular kind of regret that watch collectors know well. It is not the regret of spending too much. It is the regret of spending carelessly. Of buying the wrong thing at the right moment, and then spending years correcting the mistake.</p>
+    <p>Your first serious watch shapes everything that follows. It trains your eye. It teaches you what complications actually mean to you on the wrist. It tells you whether you are really a bracelet person or a strap person, whether 40mm sits right or feels enormous, whether you want something that disappears into your sleeve or something that announces itself. Getting it wrong is not a disaster, but it is expensive in time and money.</p>
+    <p>This guide is for the person who is ready to spend real money for the first time and wants to spend it wisely.</p>
+
+    <h2>Define your actual life, not your aspirational one</h2>
+    <p>The single most common mistake first-time serious buyers make is buying for the life they imagine rather than the life they live. A dress watch is wonderful if you wear suits five days a week. If you work from home in jeans, it will sit in a box.</p>
+    <p>Before you look at a single reference, spend ten minutes writing down where your watch will actually go. Work, weekends, the gym, formal occasions. Rank them honestly. The answer will tell you far more than any buyer&rsquo;s guide.</p>
+
+    <blockquote><p>Buy for the life you live. Not the life you plan to live eventually.</p></blockquote>
+
+    <h2>The budget question</h2>
+    <p>A serious watch begins somewhere around £500, where you start to find genuine Swiss movements with real finishing. But the sweet spot for first purchases has traditionally sat between £1,000 and £4,000. Below that, choice is limited. Above it, the stakes of getting it wrong are higher.</p>
+    <p>Within that range, the market is remarkably strong. Tudor, Longines, Tissot at the upper end, Frederique Constant, Oris, Nomos, and Grand Seiko all make watches that would satisfy a collector of any level. There is no shame in any of them. There is, however, a significant difference in what each one offers, and that is where considered curation matters.</p>
+
+    <h2>Movement: do you actually care?</h2>
+    <p>You will read much about movements. In-house versus bought-in, COSC certification, power reserve, number of jewels. Most of it matters less than you think for a first watch. What matters more is how well the movement is regulated and how well the watch is finished overall.</p>
+    <p>That said, if the idea of a mechanical watch excites you, lean into it. An automatic with an exhibition caseback that lets you see the rotor spin is a genuine pleasure. If you simply want a watch that is always right, quartz is not the compromise it is sometimes made to seem. The Grand Seiko Quartz references are among the finest watches made.</p>
+
+    <h2>Case size: smaller than you think</h2>
+    <p>If you have never worn a serious watch, you will almost certainly overestimate the size you want. The 42mm to 44mm watches that dominate advertising look remarkable in photographs. On the wrist of someone with an average build, they can look like a clock strapped to an arm.</p>
+    <p>Try before you buy if at all possible. Most people who wear watches seriously end up preferring something between 36mm and 40mm. The 38mm to 39mm range in particular has a timelessness that larger cases often lack.</p>
+
+    <h2>Strap or bracelet?</h2>
+    <p>Both have their place, but leather on a steel bracelet watch is almost always a revelation. Changing straps is inexpensive, easy, and completely transforms the character of a watch. Buy something with a standard lug width and you open up an enormous world of options.</p>
+    <p>If you are unsure, buy on leather first. You can always add the bracelet later. The reverse is harder to undo psychologically.</p>
+
+    <div class="post-divider"></div>
+
+    <p>The decision matters, which is why it deserves more than an hour of scrolling. If you would like three recommendations chosen specifically for you based on your budget, taste, and lifestyle, that is precisely what Timepiece Scout does.</p>
+  
+    <div class="cta-box">
+      <p>Ready to find the watch that was made for you?</p>
+      <a href="index.html#begin">Get my personal report</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 Timepiece Scout. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="legal.html">Privacy &amp; Terms</a>
+      <a href="blog.html">Journal</a>
+      <a href="mailto:hello@timepiecescout.com">Contact</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
