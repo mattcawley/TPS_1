@@ -238,15 +238,15 @@
       <div class="form-grid">
         <div class="form-group">
           <label>Your name</label>
-          <input type="text" placeholder="e.g. James Hartley">
+          <input id="f-name" type="text" placeholder="e.g. James Hartley">
         </div>
         <div class="form-group">
           <label>Email address</label>
-          <input type="email" placeholder="your@email.com">
+          <input id="f-email" type="email" placeholder="your@email.com">
         </div>
         <div class="form-group">
           <label>Primary style</label>
-          <select>
+          <select id="f-style">
             <option>No preference</option>
             <option>Classic / Dress</option>
             <option>Sporty / Casual</option>
@@ -270,17 +270,14 @@
         </div>
         <div class="form-group">
           <label>Case size preference</label>
-          <select>
-            <option>No preference</option>
-            <option>Slim (under 38mm)</option>
+          <select id="f-casesize">
             <option>Mid (38–42mm)</option>
             <option>Large (42mm+)</option>
           </select>
         </div>
         <div class="form-group">
           <label>Number of recommendations</label>
-          <select>
-            <option>1 recommendation</option>
+          <select id="f-numrecs">
             <option selected>2 recommendations</option>
             <option>3 recommendations</option>
             <option>4 recommendations</option>
@@ -289,11 +286,11 @@
         </div>
         <div class="form-group form-full">
           <label>Budget range</label>
-          <input type="text" placeholder="e.g. £2,000 – £5,000, or simply \'under £3k\'">
+          <input id="f-budget" type="text" placeholder="e.g. £2,000 – £5,000, or simply 'under £3k'">
         </div>
         <div class="form-group form-full">
           <label>Anything else we should know?</label>
-          <input type="text" placeholder="e.g. I prefer leather straps, I'm a diver, I want something my son could inherit...">
+          <input id="f-notes" type="text" placeholder="e.g. I prefer leather straps, I'm a diver, I want something my son could inherit...">
         </div>
       </div>
       <div class="form-submit">
@@ -417,38 +414,28 @@
 <script>
 function submitReport(e) {
   e.preventDefault();
-  var name = document.querySelector('input[placeholder="e.g. James Hartley"]').value || 'Not provided';
-  var email = document.querySelector('input[placeholder="your@email.com"]').value || 'Not provided';
-  var style = document.querySelectorAll('select')[0].value;
+  var name    = document.getElementById('f-name').value.trim();
+  var email   = document.getElementById('f-email').value.trim();
+  var style   = document.getElementById('f-style').value;
   var occasion = document.getElementById('occasion-select').value;
-  var occasionOther = document.getElementById('occasion-other').value;
+  var occasionOther = document.getElementById('occasion-other').value.trim();
   if (occasion === 'Other' && occasionOther) occasion = occasionOther;
-  var caseSize = document.querySelectorAll('select')[1].value;
-  var numRecs = document.querySelectorAll('select')[2].value;
-  var budget = document.querySelector('input[placeholder*="e.g. £2,000"]').value || 'Not provided';
-  var notes = document.querySelector('input[placeholder*="leather straps"]').value || '';
-  var subject = encodeURIComponent('New Timepiece Scout Report Request from ' + name);
-  var body = encodeURIComponent(
-    'New report request received from the Timepiece Scout website.
+  var caseSize = document.getElementById('f-casesize').value;
+  var numRecs  = document.getElementById('f-numrecs').value;
+  var budget   = document.getElementById('f-budget').value.trim();
+  var notes    = document.getElementById('f-notes').value.trim();
 
-' +
-    'Name: ' + name + '
-' +
-    'Email: ' + email + '
-' +
-    'Style: ' + style + '
-' +
-    'Occasion: ' + occasion + '
-' +
-    'Case size: ' + caseSize + '
-' +
-    'Number of recommendations: ' + numRecs + '
-' +
-    'Budget: ' + budget + '
-' +
-    'Additional notes: ' + notes
-  );
-  window.location.href = 'mailto:matt@timepiecescout.com?subject=' + subject + '&body=' + body;
+  if (!name || !email) {
+    alert('Please enter your name and email address before continuing.');
+    return;
+  }
+
+  var params = new URLSearchParams({
+    name: name, email: email, style: style,
+    occasion: occasion, caseSize: caseSize,
+    numRecs: numRecs, budget: budget, notes: notes
+  });
+  window.location.href = 'confirm.html?' + params.toString();
 }
 </script>
 </body>

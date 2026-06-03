@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirm Your Report — Timepiece Scout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F4; --cream-dark: #F2EFE7; --cream-mid: #EAE6DA;
+    --gold: #B8986A; --gold-dark: #8C7145; --charcoal: #2A2825;
+    --charcoal-mid: #4A4740; --warm-gray: #8C8880; --border: #DDD9CF;
+  }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); font-weight: 300; min-height: 100vh; display: flex; flex-direction: column; }
+  nav { position: fixed; top: 0; width: 100%; background: rgba(250,248,244,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 5%; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1200px; margin: 0 auto; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  nav ul a:hover { color: var(--gold); }
+
+  main { flex: 1; padding: 120px 5% 100px; }
+  .confirm-inner { max-width: 680px; margin: 0 auto; }
+
+  .step-row { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+  .step { display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); }
+  .step.active { color: var(--charcoal); }
+  .step-dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--warm-gray); }
+  .step.active .step-dot { background: var(--charcoal); border-color: var(--charcoal); color: var(--cream); }
+  .step.done .step-dot { background: var(--gold); border-color: var(--gold); color: var(--cream); }
+  .step-line { flex: 1; height: 1px; background: var(--border); }
+
+  .page-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 300; line-height: 1.15; margin-bottom: 14px; }
+  h1 em { font-style: italic; color: var(--gold-dark); }
+  .intro { font-size: 15px; color: var(--warm-gray); line-height: 1.8; margin-bottom: 40px; }
+
+  /* SUMMARY CARD */
+  .summary-card { background: #fff; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 36px; }
+  .summary-header { background: var(--charcoal); padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .summary-header-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--cream); letter-spacing: 0.08em; }
+  .summary-header-sub { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,248,244,0.4); }
+  .summary-body { padding: 32px; }
+  .summary-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--cream-mid); }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); }
+  .summary-value { font-size: 14px; color: var(--charcoal); text-align: right; max-width: 60%; }
+  .summary-row.highlight .summary-value { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold-dark); }
+
+  /* PRICE BOX */
+  .price-box { background: var(--cream-dark); border: 1px solid var(--border); border-radius: 2px; padding: 24px 32px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center; }
+  .price-label { font-size: 13px; color: var(--charcoal-mid); line-height: 1.6; }
+  .price-label small { display: block; font-size: 11px; color: var(--warm-gray); margin-top: 4px; letter-spacing: 0.04em; }
+  .price-amount { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--charcoal); }
+
+  /* CTA */
+  .cta-area { text-align: center; }
+  .btn-pay { display: inline-block; background: var(--gold); color: var(--cream); padding: 16px 52px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; margin-bottom: 16px; }
+  .btn-pay:hover { background: var(--gold-dark); }
+  .btn-back { display: inline-block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); text-decoration: none; margin-left: 24px; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.2s; }
+  .btn-back:hover { color: var(--charcoal); }
+  .cta-note { font-size: 12px; color: var(--warm-gray); margin-top: 18px; line-height: 1.7; }
+  .cta-note a { color: var(--gold-dark); text-decoration: none; }
+
+  footer { padding: 40px 5%; border-top: 1px solid var(--border); margin-top: auto; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--warm-gray); }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--warm-gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 640px) {
+    nav ul { display: none; }
+    .price-box { flex-direction: column; gap: 12px; text-align: center; }
+    .summary-row { flex-direction: column; gap: 4px; }
+    .summary-value { text-align: left; max-width: 100%; }
+    .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+    .btn-back { display: block; margin: 12px auto 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Timepiece <span>Scout</span></a>
+    <ul>
+      <li><a href="index.html#how-it-works">How it works</a></li>
+      <li><a href="index.html#report">The report</a></li>
+      <li><a href="blog.html">Journal</a></li>
+      <li><a href="index.html#begin">Begin</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="confirm-inner">
+
+    <div class="step-row">
+      <div class="step done"><div class="step-dot">✓</div>Your preferences</div>
+      <div class="step-line"></div>
+      <div class="step active"><div class="step-dot">2</div>Confirm &amp; pay</div>
+      <div class="step-line"></div>
+      <div class="step"><div class="step-dot">3</div>Report delivered</div>
+    </div>
+
+    <div class="page-tag">Almost there</div>
+    <h1>Review your <em>brief</em></h1>
+    <p class="intro">Please check your details below before proceeding to payment. Once your order is confirmed, we will get to work on your personal report.</p>
+
+    <div class="summary-card">
+      <div class="summary-header">
+        <div>
+          <div class="summary-header-title">Personal Curation Brief</div>
+          <div class="summary-header-sub" id="summary-date"></div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,248,244,0.4);">For</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--cream);" id="s-name"></div>
+        </div>
+      </div>
+      <div class="summary-body">
+        <div class="summary-row"><span class="summary-label">Style</span><span class="summary-value" id="s-style"></span></div>
+        <div class="summary-row"><span class="summary-label">Occasion</span><span class="summary-value" id="s-occasion"></span></div>
+        <div class="summary-row"><span class="summary-label">Case size</span><span class="summary-value" id="s-casesize"></span></div>
+        <div class="summary-row"><span class="summary-label">Budget</span><span class="summary-value" id="s-budget"></span></div>
+        <div class="summary-row highlight"><span class="summary-label">Recommendations</span><span class="summary-value" id="s-numrecs"></span></div>
+        <div class="summary-row" id="notes-row" style="display:none;"><span class="summary-label">Additional notes</span><span class="summary-value" id="s-notes"></span></div>
+      </div>
+    </div>
+
+    <div class="price-box">
+      <div class="price-label">
+        Report fee
+        <small>Not satisfied? We will produce a completely new report, free of charge.</small>
+      </div>
+      <div class="price-amount">£50</div>
+    </div>
+
+    <div class="cta-area">
+      <a id="stripe-link" href="https://buy.stripe.com/4gM28rb000KP8qjbJRfbq00" class="btn-pay">Proceed to payment →</a>
+      <a href="index.html#begin" class="btn-back">Edit my brief</a>
+      <p class="cta-note">
+        Secure payment via Stripe. You will be redirected to complete your purchase.<br>
+        Your report will be sent to <strong id="s-email-note"></strong> once your payment is confirmed.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 Timepiece Scout. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="legal.html">Privacy &amp; Terms</a>
+      <a href="blog.html">Journal</a>
+      <a href="mailto:hello@timepiecescout.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Read URL params
+  var p = new URLSearchParams(window.location.search);
+  var name     = p.get('name')     || 'Not provided';
+  var email    = p.get('email')    || 'Not provided';
+  var style    = p.get('style')    || 'Not provided';
+  var occasion = p.get('occasion') || 'Not provided';
+  var caseSize = p.get('caseSize') || 'Not provided';
+  var numRecs  = p.get('numRecs')  || 'Not provided';
+  var budget   = p.get('budget')   || 'Not provided';
+  var notes    = p.get('notes')    || '';
+
+  // Populate summary
+  document.getElementById('s-name').textContent    = name;
+  document.getElementById('s-style').textContent   = style;
+  document.getElementById('s-occasion').textContent = occasion;
+  document.getElementById('s-casesize').textContent = caseSize;
+  document.getElementById('s-budget').textContent  = budget || 'Not specified';
+  document.getElementById('s-numrecs').textContent = numRecs;
+  document.getElementById('s-email-note').textContent = email;
+
+  if (notes) {
+    document.getElementById('s-notes').textContent = notes;
+    document.getElementById('notes-row').style.display = 'flex';
+  }
+
+  // Date
+  var d = new Date();
+  document.getElementById('summary-date').textContent =
+    d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  // When they click pay, open mailto to matt with their preferences
+  document.getElementById('stripe-link').addEventListener('click', function() {
+    var subject = encodeURIComponent('New Timepiece Scout Report Request — ' + name);
+    var body = encodeURIComponent(
+      'New report request received via Timepiece Scout.\n\n' +
+      'Name: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Style: ' + style + '\n' +
+      'Occasion: ' + occasion + '\n' +
+      'Case size: ' + caseSize + '\n' +
+      'Recommendations wanted: ' + numRecs + '\n' +
+      'Budget: ' + budget + '\n' +
+      'Additional notes: ' + (notes || 'None') + '\n\n' +
+      'Payment initiated via Stripe.'
+    );
+    // Open mailto in background tab so Stripe opens in current tab
+    var a = document.createElement('a');
+    a.href = 'mailto:matt@timepiecescout.com?subject=' + subject + '&body=' + body;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    // Stripe link follows naturally via href
+  });
+</script>
+
+</body>
+</html>
