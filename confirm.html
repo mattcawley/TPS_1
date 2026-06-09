@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Confirm Your Report — Timepiece Scout</title>
+<title>Confirm Your Brief — Timepiece Scout</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,49 +20,49 @@
   nav ul { list-style: none; display: flex; gap: 36px; }
   nav ul a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
   nav ul a:hover { color: var(--gold); }
-
   main { flex: 1; padding: 120px 5% 100px; }
-  .confirm-inner { max-width: 680px; margin: 0 auto; }
-
-  .step-row { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
-  .step { display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); }
+  .inner { max-width: 680px; margin: 0 auto; }
+  .step-row { display: flex; align-items: center; gap: 10px; margin-bottom: 44px; }
+  .step { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); white-space: nowrap; }
   .step.active { color: var(--charcoal); }
-  .step-dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--warm-gray); }
+  .step.done { color: var(--gold-dark); }
+  .step-dot { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
   .step.active .step-dot { background: var(--charcoal); border-color: var(--charcoal); color: var(--cream); }
-  .step.done .step-dot { background: var(--gold); border-color: var(--gold); color: var(--cream); }
-  .step-line { flex: 1; height: 1px; background: var(--border); }
-
+  .step.done .step-dot { background: var(--gold); border-color: var(--gold); color: #fff; }
+  .step-line { flex: 1; height: 1px; background: var(--border); min-width: 12px; }
   .page-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 300; line-height: 1.15; margin-bottom: 14px; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4vw, 46px); font-weight: 300; line-height: 1.15; margin-bottom: 12px; }
   h1 em { font-style: italic; color: var(--gold-dark); }
-  .intro { font-size: 15px; color: var(--warm-gray); line-height: 1.8; margin-bottom: 40px; }
+  .intro { font-size: 14px; color: var(--warm-gray); line-height: 1.8; margin-bottom: 36px; }
 
-  /* SUMMARY CARD */
-  .summary-card { background: #fff; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 36px; }
-  .summary-header { background: var(--charcoal); padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }
-  .summary-header-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--cream); letter-spacing: 0.08em; }
-  .summary-header-sub { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,248,244,0.4); }
-  .summary-body { padding: 32px; }
-  .summary-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--cream-mid); }
+  .order-ref-bar { background: var(--cream-dark); border: 1px solid var(--border); border-radius: 2px; padding: 14px 24px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center; }
+  .order-ref-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); }
+  .order-ref-value { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--gold-dark); letter-spacing: 0.08em; }
+
+  .summary-card { background: #fff; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 28px; }
+  .summary-header { background: var(--charcoal); padding: 22px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .summary-header-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--cream); letter-spacing: 0.08em; }
+  .summary-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(250,248,244,0.7); }
+  .summary-body { padding: 28px 32px; }
+  .summary-row { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--cream-mid); }
   .summary-row:last-child { border-bottom: none; }
-  .summary-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); }
-  .summary-value { font-size: 14px; color: var(--charcoal); text-align: right; max-width: 60%; }
-  .summary-row.highlight .summary-value { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold-dark); }
+  .summary-label { font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--warm-gray); }
+  .summary-value { font-size: 14px; color: var(--charcoal); text-align: right; max-width: 58%; }
 
-  /* PRICE BOX */
-  .price-box { background: var(--cream-dark); border: 1px solid var(--border); border-radius: 2px; padding: 24px 32px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center; }
-  .price-label { font-size: 13px; color: var(--charcoal-mid); line-height: 1.6; }
-  .price-label small { display: block; font-size: 11px; color: var(--warm-gray); margin-top: 4px; letter-spacing: 0.04em; }
-  .price-amount { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--charcoal); }
+  .price-box { background: var(--cream-dark); border: 1px solid var(--border); border-radius: 2px; padding: 22px 32px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center; }
+  .price-label { font-size: 13px; color: var(--charcoal-mid); }
+  .price-label small { display: block; font-size: 11px; color: var(--warm-gray); margin-top: 4px; }
+  .price-amount { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; color: var(--charcoal); }
 
-  /* CTA */
   .cta-area { text-align: center; }
-  .btn-pay { display: inline-block; background: var(--gold); color: var(--cream); padding: 16px 52px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; margin-bottom: 16px; }
+  .btn-pay { display: inline-block; background: var(--gold); color: var(--cream); padding: 15px 48px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; margin-bottom: 14px; border: none; cursor: pointer; }
   .btn-pay:hover { background: var(--gold-dark); }
-  .btn-back { display: inline-block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); text-decoration: none; margin-left: 24px; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.2s; }
+  .btn-back { display: inline-block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); text-decoration: none; margin-left: 20px; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
   .btn-back:hover { color: var(--charcoal); }
-  .cta-note { font-size: 12px; color: var(--warm-gray); margin-top: 18px; line-height: 1.7; }
-  .cta-note a { color: var(--gold-dark); text-decoration: none; }
+  .cta-note { font-size: 12px; color: var(--warm-gray); margin-top: 16px; line-height: 1.7; }
+
+  /* Hidden Netlify form */
+  .netlify-hidden { display: none; }
 
   footer { padding: 40px 5%; border-top: 1px solid var(--border); margin-top: auto; }
   .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
@@ -70,19 +70,18 @@
   .footer-links { display: flex; gap: 28px; }
   .footer-links a { font-size: 12px; color: var(--warm-gray); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--gold); }
-
   @media (max-width: 640px) {
     nav ul { display: none; }
-    .price-box { flex-direction: column; gap: 12px; text-align: center; }
+    .step-row { gap: 6px; }
+    .step span:not(.step-dot) { display: none; }
+    .price-box { flex-direction: column; gap: 10px; }
     .summary-row { flex-direction: column; gap: 4px; }
     .summary-value { text-align: left; max-width: 100%; }
     .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
-    .btn-back { display: block; margin: 12px auto 0; }
   }
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo">Timepiece <span>Scout</span></a>
@@ -95,39 +94,55 @@
   </div>
 </nav>
 
-<main>
-  <div class="confirm-inner">
+<!-- Hidden Netlify form to capture Stage 1 submission -->
+<form class="netlify-hidden" name="stage1-brief" netlify netlify-honeypot="bot-field" id="netlify-stage1">
+  <input type="hidden" name="form-name" value="stage1-brief">
+  <input type="hidden" name="bot-field">
+  <input type="hidden" name="order-ref" id="nf-order-ref">
+  <input type="hidden" name="name" id="nf-name">
+  <input type="hidden" name="email" id="nf-email">
+  <input type="hidden" name="style" id="nf-style">
+  <input type="hidden" name="occasion" id="nf-occasion">
+  <input type="hidden" name="case-size" id="nf-casesize">
+  <input type="hidden" name="budget" id="nf-budget">
+  <input type="hidden" name="recommendations" id="nf-numrecs">
+  <input type="hidden" name="notes" id="nf-notes">
+</form>
 
+<main>
+  <div class="inner">
     <div class="step-row">
-      <div class="step done"><div class="step-dot">✓</div>Your preferences</div>
+      <div class="step done"><div class="step-dot">✓</div><span>Your brief</span></div>
       <div class="step-line"></div>
-      <div class="step active"><div class="step-dot">2</div>Confirm &amp; pay</div>
+      <div class="step active"><div class="step-dot">2</div><span>Confirm &amp; pay</span></div>
       <div class="step-line"></div>
-      <div class="step"><div class="step-dot">3</div>Report submitted</div>
+      <div class="step"><div class="step-dot">3</div><span>Your preferences</span></div>
+      <div class="step-line"></div>
+      <div class="step"><div class="step-dot">4</div><span>Report submitted</span></div>
     </div>
 
-    <div class="page-tag">Almost there</div>
+    <div class="page-tag">Step 2 of 4</div>
     <h1>Review your <em>brief</em></h1>
-    <p class="intro">Please check your details below before proceeding to payment. Once your order is confirmed, we will get to work on your personal report.</p>
+    <p class="intro">Please check your details below. Once payment is confirmed you will be asked a few more questions to complete your brief, then we will get to work.</p>
+
+    <div class="order-ref-bar">
+      <span class="order-ref-label">Order reference</span>
+      <span class="order-ref-value" id="display-order-ref">Generating&hellip;</span>
+    </div>
 
     <div class="summary-card">
       <div class="summary-header">
-        <div>
-          <div class="summary-header-title">Personal Curation Brief</div>
-          <div class="summary-header-sub" id="summary-date"></div>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,248,244,0.4);">For</div>
-          <div style="font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--cream);" id="s-name"></div>
-        </div>
+        <div class="summary-header-title">Stage 1 Brief</div>
+        <div class="summary-name" id="display-name"></div>
       </div>
       <div class="summary-body">
-        <div class="summary-row"><span class="summary-label">Style</span><span class="summary-value" id="s-style"></span></div>
-        <div class="summary-row"><span class="summary-label">Occasion</span><span class="summary-value" id="s-occasion"></span></div>
-        <div class="summary-row"><span class="summary-label">Case size</span><span class="summary-value" id="s-casesize"></span></div>
-        <div class="summary-row"><span class="summary-label">Budget</span><span class="summary-value" id="s-budget"></span></div>
-        <div class="summary-row highlight"><span class="summary-label">Recommendations</span><span class="summary-value" id="s-numrecs"></span></div>
-        <div class="summary-row" id="notes-row" style="display:none;"><span class="summary-label">Additional notes</span><span class="summary-value" id="s-notes"></span></div>
+        <div class="summary-row"><span class="summary-label">Email</span><span class="summary-value" id="display-email"></span></div>
+        <div class="summary-row"><span class="summary-label">Style</span><span class="summary-value" id="display-style"></span></div>
+        <div class="summary-row"><span class="summary-label">Occasion</span><span class="summary-value" id="display-occasion"></span></div>
+        <div class="summary-row"><span class="summary-label">Case size</span><span class="summary-value" id="display-casesize"></span></div>
+        <div class="summary-row"><span class="summary-label">Budget</span><span class="summary-value" id="display-budget"></span></div>
+        <div class="summary-row"><span class="summary-label">Recommendations</span><span class="summary-value" id="display-numrecs"></span></div>
+        <div class="summary-row" id="display-notes-row" style="display:none;"><span class="summary-label">Notes</span><span class="summary-value" id="display-notes"></span></div>
       </div>
     </div>
 
@@ -140,14 +155,10 @@
     </div>
 
     <div class="cta-area">
-      <a id="stripe-link" href="https://buy.stripe.com/8x26oH4BC659cGzcNVfbq01" class="btn-pay">Proceed to payment →</a>
+      <button class="btn-pay" id="pay-btn">Proceed to payment &rarr;</button>
       <a href="index.html#begin" class="btn-back">Edit my brief</a>
-      <p class="cta-note">
-        Secure payment via Stripe. You will be redirected to complete your purchase.<br>
-        Your report will be sent to <strong id="s-email-note"></strong> once your payment is confirmed.
-      </p>
+      <p class="cta-note">Secure payment via Stripe. After payment you will complete Stage 2 of your brief.<br>Your report will be sent to <strong id="display-email-note"></strong>.</p>
     </div>
-
   </div>
 </main>
 
@@ -163,61 +174,77 @@
 </footer>
 
 <script>
-  // Read URL params
   var p = new URLSearchParams(window.location.search);
-  var name     = p.get('name')     || 'Not provided';
-  var email    = p.get('email')    || 'Not provided';
-  var style    = p.get('style')    || 'Not provided';
-  var occasion = p.get('occasion') || 'Not provided';
-  var caseSize = p.get('caseSize') || 'Not provided';
-  var numRecs  = p.get('numRecs')  || 'Not provided';
-  var budget   = p.get('budget')   || 'Not provided';
+  var name     = p.get('name')     || '';
+  var email    = p.get('email')    || '';
+  var style    = p.get('style')    || 'No preference';
+  var occasion = p.get('occasion') || 'No preference';
+  var caseSize = p.get('caseSize') || 'No preference';
+  var numRecs  = p.get('numRecs')  || '3 recommendations';
+  var budget   = p.get('budget')   || 'Not specified';
   var notes    = p.get('notes')    || '';
 
-  // Populate summary
-  document.getElementById('s-name').textContent    = name;
-  document.getElementById('s-style').textContent   = style;
-  document.getElementById('s-occasion').textContent = occasion;
-  document.getElementById('s-casesize').textContent = caseSize;
-  document.getElementById('s-budget').textContent  = budget || 'Not specified';
-  document.getElementById('s-numrecs').textContent = numRecs;
-  document.getElementById('s-email-note').textContent = email;
-
-  if (notes) {
-    document.getElementById('s-notes').textContent = notes;
-    document.getElementById('notes-row').style.display = 'flex';
+  // Generate order ref: TPS + timestamp fragment + random
+  function genRef() {
+    var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    var r = 'TPS-';
+    for (var i = 0; i < 6; i++) r += chars[Math.floor(Math.random() * chars.length)];
+    return r;
   }
 
-  // Date
-  var d = new Date();
-  document.getElementById('summary-date').textContent =
-    d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  // Use sessionStorage so ref persists on back/forward but not across sessions
+  var orderRef = sessionStorage.getItem('tps-order-ref');
+  if (!orderRef) {
+    orderRef = genRef();
+    sessionStorage.setItem('tps-order-ref', orderRef);
+  }
 
-  // When they click pay, open mailto to matt with their preferences
-  document.getElementById('stripe-link').addEventListener('click', function() {
-    var subject = encodeURIComponent('New Timepiece Scout Report Request — ' + name);
-    var body = encodeURIComponent(
-      'New report request received via Timepiece Scout.\n\n' +
-      'Name: ' + name + '\n' +
-      'Email: ' + email + '\n' +
-      'Style: ' + style + '\n' +
-      'Occasion: ' + occasion + '\n' +
-      'Case size: ' + caseSize + '\n' +
-      'Recommendations wanted: ' + numRecs + '\n' +
-      'Budget: ' + budget + '\n' +
-      'Additional notes: ' + (notes || 'None') + '\n\n' +
-      'Payment initiated via Stripe.'
-    );
-    // Open mailto in background tab so Stripe opens in current tab
-    var a = document.createElement('a');
-    a.href = 'mailto:matt@timepiecescout.com?subject=' + subject + '&body=' + body;
-    a.target = '_blank';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    // Stripe link follows naturally via href
+  // Populate display
+  document.getElementById('display-order-ref').textContent = orderRef;
+  document.getElementById('display-name').textContent      = name;
+  document.getElementById('display-email').textContent     = email;
+  document.getElementById('display-style').textContent     = style;
+  document.getElementById('display-occasion').textContent  = occasion;
+  document.getElementById('display-casesize').textContent  = caseSize;
+  document.getElementById('display-budget').textContent    = budget;
+  document.getElementById('display-numrecs').textContent   = numRecs;
+  document.getElementById('display-email-note').textContent = email;
+  if (notes) {
+    document.getElementById('display-notes').textContent = notes;
+    document.getElementById('display-notes-row').style.display = 'flex';
+  }
+
+  // Populate hidden Netlify form fields
+  document.getElementById('nf-order-ref').value = orderRef;
+  document.getElementById('nf-name').value      = name;
+  document.getElementById('nf-email').value     = email;
+  document.getElementById('nf-style').value     = style;
+  document.getElementById('nf-occasion').value  = occasion;
+  document.getElementById('nf-casesize').value  = caseSize;
+  document.getElementById('nf-budget').value    = budget;
+  document.getElementById('nf-numrecs').value   = numRecs;
+  document.getElementById('nf-notes').value     = notes;
+
+  // Store in sessionStorage for thankyou page to use
+  sessionStorage.setItem('tps-name',     name);
+  sessionStorage.setItem('tps-email',    email);
+  sessionStorage.setItem('tps-style',    style);
+  sessionStorage.setItem('tps-occasion', occasion);
+  sessionStorage.setItem('tps-casesize', caseSize);
+  sessionStorage.setItem('tps-numrecs',  numRecs);
+  sessionStorage.setItem('tps-budget',   budget);
+  sessionStorage.setItem('tps-notes',    notes);
+
+  document.getElementById('pay-btn').addEventListener('click', function() {
+    // Submit Stage 1 to Netlify Forms via fetch
+    var formData = new FormData(document.getElementById('netlify-stage1'));
+    fetch('/', { method: 'POST', body: formData })
+      .catch(function() {}) // fail silently — don't block payment
+      .finally(function() {
+        // Redirect to Stripe with order ref as client_reference_id
+        window.location.href = 'https://buy.stripe.com/14AeVd1pq5157mfeW3fbq02?client_reference_id=' + encodeURIComponent(orderRef);
+      });
   });
 </script>
-
 </body>
 </html>

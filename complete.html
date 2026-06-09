@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brief Submitted — Timepiece Scout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F4; --cream-dark: #F2EFE7; --cream-mid: #EAE6DA;
+    --gold: #B8986A; --gold-dark: #8C7145; --charcoal: #2A2825;
+    --charcoal-mid: #4A4740; --warm-gray: #8C8880; --border: #DDD9CF;
+  }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); font-weight: 300; min-height: 100vh; display: flex; flex-direction: column; }
+  nav { position: fixed; top: 0; width: 100%; background: rgba(250,248,244,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 5%; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1200px; margin: 0 auto; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.12em; color: var(--charcoal); text-decoration: none; }
+  .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  nav ul a:hover { color: var(--gold); }
+  main { flex: 1; padding: 120px 5% 100px; display: flex; align-items: center; }
+  .inner { max-width: 600px; margin: 0 auto; text-align: center; }
+
+  .step-row { display: flex; align-items: center; gap: 10px; margin-bottom: 56px; }
+  .step { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); white-space: nowrap; }
+  .step.done { color: var(--gold-dark); }
+  .step-dot { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
+  .step.done .step-dot { background: var(--gold); border-color: var(--gold); color: #fff; }
+  .step-line { flex: 1; height: 1px; background: var(--gold); min-width: 12px; }
+
+  .check-circle { width: 72px; height: 72px; border-radius: 50%; border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 32px; }
+  .check-circle svg { width: 28px; height: 28px; }
+
+  .page-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 50px); font-weight: 300; line-height: 1.15; margin-bottom: 16px; }
+  h1 em { font-style: italic; color: var(--gold-dark); }
+  .intro { font-size: 15px; color: var(--warm-gray); line-height: 1.9; margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+  .ref-display { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--warm-gray); letter-spacing: 0.08em; margin-bottom: 44px; }
+  .ref-display span { color: var(--gold-dark); font-size: 20px; }
+
+  .divider { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 40px; }
+
+  .what-next { background: var(--cream-dark); border: 1px solid var(--border); border-radius: 2px; padding: 32px; text-align: left; margin-bottom: 36px; }
+  .what-next h3 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 20px; }
+  .next-item { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
+  .next-item:last-child { margin-bottom: 0; }
+  .next-num { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold); line-height: 1; flex-shrink: 0; width: 20px; }
+  .next-text { font-size: 14px; color: var(--charcoal-mid); line-height: 1.7; }
+
+  .btn-home { display: inline-block; background: var(--charcoal); color: var(--cream); padding: 13px 36px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+  .btn-home:hover { background: var(--gold-dark); }
+
+  footer { padding: 40px 5%; border-top: 1px solid var(--border); margin-top: auto; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--warm-gray); }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--warm-gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  @media (max-width: 640px) {
+    nav ul { display: none; }
+    .step-row { gap: 6px; }
+    .step span:not(.step-dot) { display: none; }
+    .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Timepiece <span>Scout</span></a>
+    <ul>
+      <li><a href="index.html#how-it-works">How it works</a></li>
+      <li><a href="index.html#report">The report</a></li>
+      <li><a href="blog.html">Journal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="inner">
+    <div class="step-row">
+      <div class="step done"><div class="step-dot">✓</div><span>Your brief</span></div>
+      <div class="step-line"></div>
+      <div class="step done"><div class="step-dot">✓</div><span>Payment</span></div>
+      <div class="step-line"></div>
+      <div class="step done"><div class="step-dot">✓</div><span>Your preferences</span></div>
+      <div class="step-line"></div>
+      <div class="step done"><div class="step-dot">✓</div><span>Report submitted</span></div>
+    </div>
+
+    <div class="check-circle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#B8986A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+
+    <div class="page-tag">Brief submitted</div>
+    <h1>Your report is <em>in hand</em></h1>
+    <p class="intro">We have everything we need. Our team will now work through your brief and produce your personal watch recommendation report.</p>
+
+    <div class="ref-display">Your order reference: <span id="display-ref"></span></div>
+    <div class="divider"></div>
+
+    <div class="what-next">
+      <h3>What happens next</h3>
+      <div class="next-item">
+        <div class="next-num">1</div>
+        <div class="next-text">Your brief is reviewed by our team and matched against our curated database of references.</div>
+      </div>
+      <div class="next-item">
+        <div class="next-num">2</div>
+        <div class="next-text">Your personal report is compiled, including detailed justification for each recommendation.</div>
+      </div>
+      <div class="next-item">
+        <div class="next-num">3</div>
+        <div class="next-text">Your report is sent to your email address. If you are not completely satisfied, we will produce a new one free of charge.</div>
+      </div>
+    </div>
+
+    <a href="index.html" class="btn-home">Return to Timepiece Scout</a>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 Timepiece Scout. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="legal.html">Privacy &amp; Terms</a>
+      <a href="blog.html">Journal</a>
+      <a href="mailto:hello@timepiecescout.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var orderRef = sessionStorage.getItem('tps-order-ref') || '';
+  document.getElementById('display-ref').textContent = orderRef || 'See your confirmation email';
+  // Clear session after completion
+  sessionStorage.clear();
+</script>
+</body>
+</html>
