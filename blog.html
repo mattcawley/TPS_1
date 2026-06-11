@@ -107,11 +107,17 @@
     .featured-image { min-height: 240px; }
     .posts-grid { grid-template-columns: 1fr; }
     nav ul { display: none; }
+    nav ul.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--border); padding: 16px 5% 24px; gap: 0; z-index: 99; }
+    nav ul.open li a { display: block; padding: 14px 0; border-bottom: 1px solid var(--cream-mid); font-size: 13px; }
+    nav ul.open li:last-child a { border-bottom: none; margin-top: 8px; text-align: center; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); transition: all 0.2s; }
     .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
     .newsletter-form { flex-direction: column; }
     .newsletter-form input { border-right: 1px solid var(--border); border-bottom: none; border-radius: 2px 2px 0 0; }
     .newsletter-form button { border-radius: 0 0 2px 2px; }
   }
+  @media (min-width: 769px) { .hamburger { display: none; } }
 </style>
 </head>
 <body>
@@ -119,12 +125,15 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo">Timepiece <span>Scout</span></a>
-    <ul>
+    <ul id="nav-menu">
       <li><a href="index.html#how-it-works">How it works</a></li>
       <li><a href="index.html#report">The report</a></li>
       <li><a href="blog.html">Journal</a></li>
       <li><a href="index.html#begin" class="nav-cta">Begin</a></li>
     </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
@@ -213,8 +222,8 @@
       </div>
 
       <div class="post-card" onclick="location.href='post-straps.html'" style="cursor:pointer;">
-        <div class="post-card-image alt5">
-          <div class="mini-watch"><div class="mini-watch-inner"></div></div>
+        <div class="post-card-image alt5" style="padding:0; overflow:hidden;">
+          <img src="straps.jpg" alt="Leather, bracelet and rubber watch straps" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
         <div class="post-card-body">
           <div class="post-category">Advice</div>
@@ -245,10 +254,16 @@
     <div class="newsletter-tag">Stay informed</div>
     <h2 class="newsletter-title">The Scout's Dispatch</h2>
     <p class="newsletter-sub">Occasional writing on watches worth knowing about, sent directly to your inbox. No noise, no affiliate links.</p>
-    <div class="newsletter-form">
-      <input type="email" placeholder="your@email.com">
-      <button onclick="alert('Thank you for subscribing to The Scout\'s Dispatch.')">Subscribe</button>
-    </div>
+    <!-- Netlify form for Scout's Dispatch -->
+    <form name="scouts-dispatch" netlify netlify-honeypot="bot-field" id="dispatch-form" style="margin:0;">
+      <input type="hidden" name="form-name" value="scouts-dispatch">
+      <input type="hidden" name="bot-field" style="display:none;">
+      <div class="newsletter-form">
+        <input type="email" name="email" id="dispatch-email" placeholder="your@email.com" required>
+        <button type="submit">Subscribe</button>
+      </div>
+      <p id="dispatch-msg" style="display:none; margin-top:14px; font-size:13px; color:#3B6D11;">Thank you for subscribing to The Scout's Dispatch.</p>
+    </form>
   </div>
 </section>
 
@@ -264,5 +279,35 @@
   </div>
 </footer>
 
+<script>
+  function toggleNav() {
+    var menu = document.getElementById('nav-menu');
+    menu.classList.toggle('open');
+  }
+  // Close menu when a link is clicked
+  document.querySelectorAll('#nav-menu a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      document.getElementById('nav-menu').classList.remove('open');
+    });
+  });
+  // Scout's Dispatch form
+  var dispatchForm = document.getElementById('dispatch-form');
+  if (dispatchForm) {
+    dispatchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var formData = new FormData(dispatchForm);
+      fetch('/', { method: 'POST', body: formData })
+        .then(function() {
+          dispatchForm.querySelector('.newsletter-form').style.display = 'none';
+          document.getElementById('dispatch-msg').style.display = 'block';
+        })
+        .catch(function() {
+          document.getElementById('dispatch-msg').textContent = 'Something went wrong. Please try again.';
+          document.getElementById('dispatch-msg').style.color = '#c0392b';
+          document.getElementById('dispatch-msg').style.display = 'block';
+        });
+    });
+  }
+</script>
 </body>
 </html>

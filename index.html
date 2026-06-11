@@ -146,7 +146,13 @@
     .form-grid { grid-template-columns: 1fr; }
     .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
     nav ul { display: none; }
+    nav ul.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--border); padding: 16px 5% 24px; gap: 0; z-index: 99; }
+    nav ul.open li a { display: block; padding: 14px 0; border-bottom: 1px solid var(--cream-mid); font-size: 13px; }
+    nav ul.open li:last-child a { border-bottom: none; margin-top: 8px; text-align: center; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); transition: all 0.2s; }
   }
+  @media (min-width: 769px) { .hamburger { display: none; } }
 </style>
 </head>
 <body>
@@ -154,12 +160,15 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo">Timepiece <span>Scout</span></a>
-    <ul>
+    <ul id="nav-menu">
       <li><a href="#how-it-works">How it works</a></li>
       <li><a href="#report">The report</a></li>
       <li><a href="blog.html">Journal</a></li>
       <li><a href="#begin" class="nav-cta">Begin</a></li>
     </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
@@ -437,6 +446,15 @@ function submitReport(e) {
   });
   window.location.href = 'confirm.html?' + params.toString();
 }
+function toggleNav() {
+  var menu = document.getElementById('nav-menu');
+  menu.classList.toggle('open');
+}
+document.querySelectorAll('#nav-menu a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.getElementById('nav-menu').classList.remove('open');
+  });
+});
 </script>
 </body>
 </html>
